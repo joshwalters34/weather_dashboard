@@ -10,7 +10,20 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-    
+    <header class="jumbotron-fluid text-center text-light font-weight-bold bg-success pb-3 pt-3">
+        <h1 class="display-3">Weather Dashboard</h1>
+      </header>
+      <form class="form-inline mt-3 ml-2"> <!-- commented out my-lg-0-->
+        <input class="form-control mr-sm-2" id = "searchText" type="search" placeholder="Search for City" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" id = "searchBtn" type="submit">🔍</button>
+      </form>
+      <div class = "container-fluid">
+      <div class = "row">
+        <p id = "recentCities" class = "col-3 border ml-2 mt-2"> Recent Cities</p>
+        <ul id = "cityHistory"> </ul>
+        <div id = "weatherDisplay" class = "col-8 border mt-2"> Weather Data </div>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
