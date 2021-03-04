@@ -1,10 +1,94 @@
 var searchBtn = document.querySelector("#searchBtn");
-var searchText = document.querySelector("#searchText");
-var cityHistory = document.querySelector("#cityHistory");
+
+var cityHistory = document.querySelector("#cityHistory"); //location for history
 var weatherDisplay = document.querySelector("#weatherDisplay");
-var recentCities = document.querySelector("#recentCities");
+var recentCities = document.querySelector("#recentCities"); //ul for city history to add onto
 var cities = [];
 
+
+
+$("#searchBtn").on("click", function () {
+
+    var searchText = document.querySelector("#searchText"); //input field
+    var cityEntry = searchText.value.trim();
+
+
+
+    if (!cityEntry) {
+        window.alert("Please enter a city");
+        return;//alert if nothing is entered
+    }
+
+//    //add city input to my array 
+    cities.push(cityEntry)
+    searchText.value = "";
+ 
+    storeCities();
+    displayCities();
+
+})
+
+fetchLatLon();
+
+// fucntion to add the city input value to my search string
+// function citySearchEvent(event) {
+//     event.preventDefault();
+
+//     var inputCity = document.querySelector("#searchText");
+
+//     var queryWeather = './search-results.html?q=' + inputCity;
+    
+//     location.assign(queryWeather);
+// }
+
+// function fetch1(cityEntry) {fetch stuff
+//fetch2(data.coord.lat, data.coord.lon)}
+async function fetchLatLon() {
+   // fetch (`https://api.openweathermap.org/data/2.5/weather?q=${cityEntry}&appid=8145ecb6e9f22712784b4a7964038388`)
+   await fetch ('https://api.openweathermap.org/data/2.5/weather?q=Chicago&appid=8145ecb6e9f22712784b4a7964038388')
+
+    .then(response => {
+        // console.log(response);
+        return response.json();
+    }) .then((data) => {
+        console.log(data)
+    })
+        .catch(err => {
+            console.error(err);
+        }) 
+        
+       // fetchWeatherData(data.coord.lat, data.coord.lon);
+}
+
+//function fetch2(lat,lon) {fetch stuff}
+function fetchWeatherData (lat,lon) {
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat${lat}=&lon=${lon}&exclude=hourly,daily&appid=8145ecb6e9f22712784b4a7964038388`)
+
+    .then(response => {
+        // console.log(response);
+        return response.json();
+    }) .then((data) => {
+        console.log(data)
+    })
+        .catch(err => {
+            console.error(err);
+        })
+        
+        
+}
+
+// data.current.temp
+// fetch by city name to get lat and lon values
+
+    //then run the api call to get all of the weather data neededd 
+//   .then(fetch("https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,daily&appid=8145ecb6e9f22712784b4a7964038388",))
+
+  function displayWeather(){
+    var weatherData = document.createElement('p');
+        weatherData.classList.add('bg-light', 'text-dark', 'my-2')
+  }
+
+//   function to display history of cities on left side
 function displayCities() {
     cityHistory.innerHTML = "";
 
@@ -17,10 +101,10 @@ function displayCities() {
         recentCities.appendChild(li);
     }
 }
-
+// local storage get function to pull back recent cities
 function init() {
     var savedCities = JSON.parse(localStorage.getItem("city"));
-    console.log(savedCities);
+    // console.log(savedCities);
 
     if (savedCities !== null) {
         cities = savedCities
@@ -28,20 +112,10 @@ function init() {
 
     displayCities();
 }
-
+// function to add city input to local storage
 function storeCities() {
     localStorage.setItem("city", JSON.stringify(cities));
 }
 
-$("#searchBtn").click(function () {
-    var cityEntry = searchText.value.trim();
-
-   
-    cities.push(cityEntry)
-    searchText.value = "";
-
-    storeCities();
-    displayCities();
-})
 
 init();

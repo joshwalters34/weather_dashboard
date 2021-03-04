@@ -13,15 +13,25 @@
     <header class="jumbotron-fluid text-center text-light font-weight-bold bg-success pb-3 pt-3">
         <h1 class="display-3">Weather Dashboard</h1>
       </header>
-      <form class="form-inline mt-3 ml-2"> <!-- commented out my-lg-0-->
+      <form class="form-inline mt-2 ml-2"> <!-- commented out my-lg-0-->
         <input class="form-control mr-sm-2" id = "searchText" type="search" placeholder="Search for City" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" id = "searchBtn" type="submit">🔍</button>
       </form>
       <div class = "container-fluid">
       <div class = "row">
-        <p id = "recentCities" class = "col-3 border ml-2 mt-2"> Recent Cities</p>
+        <p id = "recentCities" class = "col-2 border ml-2 mt-2"> Recent Cities</p>
         <ul id = "cityHistory"> </ul>
-        <div id = "weatherDisplay" class = "col-8 border mt-2"> Weather Data </div>
+        <div id = "weatherDisplay" class = "col-9 border mt-2"> 
+          <h2 class = "col-9">City Name and date</h2>
+          <h3>5-Day Forecast</h3>
+            <div class="row">
+              <p class= "col-2 forecastBox">Day 1</p>
+              <p class= "col-2 forecastBox">Day 2</p>
+              <p class= "col-2 forecastBox">Day 3</p>
+              <p class= "col-2 forecastBox">Day 4</p>
+              <p class= "col-2 forecastBox">Day 5</p>
+           </div>
+        </div>
       </div>
     </div>
 
