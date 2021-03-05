@@ -1,5 +1,5 @@
 var searchBtn = document.querySelector("#searchBtn");
-
+var cityEntry = document.querySelector('#searchText');
 var cityHistory = document.querySelector("#cityHistory"); //location for history
 var weatherDisplay = document.querySelector("#weatherDisplay");
 var recentCities = document.querySelector("#recentCities"); //ul for city history to add onto
@@ -7,11 +7,11 @@ var cities = [];
 
 
 
-$("#searchBtn").on("click", function () {
+$("#searchBtn").on("click", function (event) {
+    event.preventDefault();
 
     var searchText = document.querySelector("#searchText"); //input field
-    var cityEntry = searchText.value.trim();
-
+    cityEntry = searchText.value.trim();
 
 
     if (!cityEntry) {
@@ -25,57 +25,57 @@ $("#searchBtn").on("click", function () {
  
     storeCities();
     displayCities();
+    // fetchWeatherData();
 
 })
 
-fetchLatLon();
+// fetchLatLon();
 
-// fucntion to add the city input value to my search string
-// function citySearchEvent(event) {
-//     event.preventDefault();
 
-//     var inputCity = document.querySelector("#searchText");
 
-//     var queryWeather = './search-results.html?q=' + inputCity;
-    
-//     location.assign(queryWeather);
-// }
 
 // function fetch1(cityEntry) {fetch stuff
 //fetch2(data.coord.lat, data.coord.lon)}
-async function fetchLatLon() {
-   // fetch (`https://api.openweathermap.org/data/2.5/weather?q=${cityEntry}&appid=8145ecb6e9f22712784b4a7964038388`)
-   await fetch ('https://api.openweathermap.org/data/2.5/weather?q=Chicago&appid=8145ecb6e9f22712784b4a7964038388')
-
-    .then(response => {
-        // console.log(response);
+function fetchLatLon(cityEntry) {
+    console.log(cityEntry);
+//    fetch (`https://api.openweathermap.org/data/2.5/weather?q=${cityEntry}&appid=8145ecb6e9f22712784b4a7964038388`)
+   fetch ('https://api.openweathermap.org/data/2.5/weather?q=Chicago&appid=8145ecb6e9f22712784b4a7964038388')
+    // fetch ("https://api.openweathermap.org/data/2.5/weather?q=" + cityEntry + "&appid=8145ecb6e9f22712784b4a7964038388")
+    .then(function(response) {
+        console.log(response);
         return response.json();
-    }) .then((data) => {
-        console.log(data)
+    }) .then(function(results) {
+        console.log(results)
     })
-        .catch(err => {
-            console.error(err);
+        .catch(function(error) {
+            console.error(error);
         }) 
         
-       // fetchWeatherData(data.coord.lat, data.coord.lon);
+    //    fetchWeatherData(data.coord.lat, data.coord.lon);
+    //    fetchWeatherData(resuts);
+
 }
 
 //function fetch2(lat,lon) {fetch stuff}
-function fetchWeatherData (lat,lon) {
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat${lat}=&lon=${lon}&exclude=hourly,daily&appid=8145ecb6e9f22712784b4a7964038388`)
-
-    .then(response => {
-        // console.log(response);
-        return response.json();
-    }) .then((data) => {
-        console.log(data)
-    })
-        .catch(err => {
-            console.error(err);
-        })
-        
-        
-}
+// function fetchWeatherData (results) {
+//     // var data = document.location.search;
+//     // fetch(`https://api.openweathermap.org/data/2.5/onecall?lat${lat}=&lon=${lon}&exclude=hourly,daily&appid=8145ecb6e9f22712784b4a7964038388`)
+//    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=41.85&lon=-87.65&exclude=hourly,daily&appid=8145ecb6e9f22712784b4a7964038388`)
+//     .then(function(response) {
+//         console.log(response);
+//         return response.json();
+//     }) .then(function(results) {
+//         console.log(results);
+//     })
+//         .catch(function(error) {
+//             console.error(error);
+//         })
+    
+//        var tempData = document.createElement('p');
+//        tempData.classList.add('bg-ligh', 'text-dark', 'my-2');
+//        tempData.innerHTML = "Temperature: " + results.current.temp;
+//        weatherDisplay.append(tempdata)
+// }
 
 // data.current.temp
 // fetch by city name to get lat and lon values
