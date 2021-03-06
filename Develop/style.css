@@ -1,3 +1,17 @@
 #searchBtn:hover {
     background-color: lightgreen;
 }
+
+.forecastBox {
+    background-color: cornflowerblue;
+    margin: 2px;
+
+}
+
+.title-area {
+    background-color: #8ef784;
+}
+
+#recentCities {
+    background-color: #8ef784;
+}
