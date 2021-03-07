@@ -97,9 +97,7 @@ function getFiveDayForcast(searchVal) {
             console.log("data", data)
             for(var i = 0; i < 5; i++){
                var icon = data.list[i].weather[0].icon
-                // var image = $('<img />').attr({
-                //     "src": "https://openweathermap.org/img/wn/"+ icon + ".png"
-                // });
+                
                 var image = "https://openweathermap.org/img/wn/"+ icon + ".png"
                 var divEl = `
                 <div class = "col-2 forecastBox">
@@ -122,16 +120,20 @@ function displayCities() {
     for (var i = 0; i < 5; i++) {
         var city = cities[i];
         var list = document.createElement("p");
+        list.classList.add("cityButton")
         list.textContent = city;
         list.setAttribute("data-index", i);
 
         recentCities.append(list);
 
-        $(this).on("click", function (event) {
+        $(".cityButton").on("click", function (event) {
             event.preventDefault();
 
-            cityEntry = ;
-            fetchLatLon();
+            cityEntry = $(this).text();
+            cityName.textContent = $(this).text();
+            console.log(cityEntry)
+            fetchLatLon(cityEntry);
+            getFiveDayForcast(cityEntry);
         })
     }
 }

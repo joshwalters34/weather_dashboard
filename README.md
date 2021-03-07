@@ -6,7 +6,7 @@ My motivation for this website was to create an easy way for users to see weathe
 
 ### Image of my website
 
- ![Screenshot](./develop/images/weather-dashboard screenshot.png)
+ ![Screenshot](./Develop/Images/weather-dashboard-screenshot.png)
 
 ### Website Address
 
