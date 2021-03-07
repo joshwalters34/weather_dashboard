@@ -73,7 +73,7 @@ function fetchLatLon(cityEntry) {
      var uvEl = results.current.uvi
 
      var uvDisplay = document.querySelector("#uvResult");
-     uvDisplay.textContent = uvEl;
+     uvDisplay.textContent =  uvEl;
 
      if(uvEl <= 3) {
          document.getElementById("uvResult").style.backgroundColor = "green";
@@ -90,7 +90,7 @@ function fetchLatLon(cityEntry) {
 
 function getFiveDayForcast(searchVal) {
 
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${searchVal}&units=imperial&appid=8145ecb6e9f22712784b4a7964038388`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${searchVal}&units=imperial&appid=8145ecb6e9f22712784b4a7964038388`)
         .then(function(response) {
             return response.json()
         }).then(function(data) {
@@ -126,16 +126,25 @@ function displayCities() {
 
         recentCities.append(list);
 
-        $(".cityButton").on("click", function (event) {
-            event.preventDefault();
+        // $(".cityButton").on("click", function (event) {
+        //     event.preventDefault();
 
-            cityEntry = $(this).text();
-            cityName.textContent = $(this).text();
-            console.log(cityEntry)
-            fetchLatLon(cityEntry);
-            getFiveDayForcast(cityEntry);
-        })
+        //     cityEntry = $(this).text();
+        //     cityName.textContent = $(this).text();
+        //     console.log(cityEntry)
+        //     fetchLatLon(cityEntry);
+        //     getFiveDayForcast(cityEntry);
+        // })
     }
+    $(".cityButton").on("click", function (event) {
+        event.preventDefault();
+
+        cityEntry = $(this).text();
+        cityName.textContent = $(this).text();
+        console.log(cityEntry)
+        fetchLatLon(cityEntry);
+        getFiveDayForcast(cityEntry);
+})
 }
 // local storage get function to pull back recent cities
 function init() {
