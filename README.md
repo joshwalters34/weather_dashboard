@@ -15,3 +15,6 @@ Visit my [Website](https://joshwalters34.github.io/weather_dashboard/)
 ### Repository
 
 View my [GitHub_Repository](https://github.com/joshwalters34/weather_dashboard)
+
+### Technologies
+HTML5, CSS3, Bootstrap, jquery, Javascript, Moment.js
